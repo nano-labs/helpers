@@ -1,0 +1,5 @@
+
+#!/usr/bin/env bash
+ffmpeg -y -i $1 -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" /tmp/$1.mp4
+ffmpeg -y -i /tmp/$1.mp4 -vf reverse /tmp/$1-reverse.mp4
+ffmpeg -i /tmp/$1.mp4 -i /tmp/$1-reverse.mp4 -filter_complex "[0:v] [1:v] concat=n=2:v=1 [v]" -map "[v]" $1_loop.mp4
