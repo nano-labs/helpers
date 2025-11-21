@@ -1,0 +1,7 @@
+#! /Users/fabio.pacheco/envs/py3.10/bin/python
+
+import sys
+import csv
+from terminaltables import AsciiTable
+
+print(AsciiTable([r for r in csv.reader(sys.stdin)]).table)
